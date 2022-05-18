@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "dgSpecHash": "QHeMpppn9ZtKvSPwySNJz9SgTzj4kN8naE33P6kEZuuP56YQ5UecycCo3G2FDCRKZk1V6Grd7Sy/liKJqRsCow==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Xiaomi\\source\\repos\\MoonSurface\\MoonSurface\\MoonSurface.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Xiaomi\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\Xiaomi\\.nuget\\packages\\opentk\\3.2.0\\opentk.3.2.0.nupkg.sha512",
+    "C:\\Users\\Xiaomi\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Пакет \"OpenTK 3.2.0\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \"net6.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "libraryId": "OpenTK",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
+}
