@@ -1,0 +1,11 @@
+C:\Users\Xiaomi\source\repos\MoonSurface\MoonSurface\bin\Release\net6.0\publish\MoonSurface.exe
+C:\Users\Xiaomi\source\repos\MoonSurface\MoonSurface\bin\Release\net6.0\publish\MoonSurface.dll
+C:\Users\Xiaomi\source\repos\MoonSurface\MoonSurface\bin\Release\net6.0\publish\MoonSurface.deps.json
+C:\Users\Xiaomi\source\repos\MoonSurface\MoonSurface\bin\Release\net6.0\publish\MoonSurface.runtimeconfig.json
+C:\Users\Xiaomi\source\repos\MoonSurface\MoonSurface\bin\Release\net6.0\publish\MoonSurface.pdb
+C:\Users\Xiaomi\source\repos\MoonSurface\MoonSurface\bin\Release\net6.0\publish\Microsoft.Win32.SystemEvents.dll
+C:\Users\Xiaomi\source\repos\MoonSurface\MoonSurface\bin\Release\net6.0\publish\OpenTK.dll
+C:\Users\Xiaomi\source\repos\MoonSurface\MoonSurface\bin\Release\net6.0\publish\System.Drawing.Common.dll
+C:\Users\Xiaomi\source\repos\MoonSurface\MoonSurface\bin\Release\net6.0\publish\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Xiaomi\source\repos\MoonSurface\MoonSurface\bin\Release\net6.0\publish\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+C:\Users\Xiaomi\source\repos\MoonSurface\MoonSurface\bin\Release\net6.0\publish\runtimes\win\lib\net6.0\System.Drawing.Common.dll

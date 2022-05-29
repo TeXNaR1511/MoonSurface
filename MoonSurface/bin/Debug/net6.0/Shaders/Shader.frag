@@ -13,5 +13,5 @@ vec3 hsv2rgb(vec3 c)
 
 void main()
 {
-    outputColor = vec4(hsv2rgb(vec3(0.3, 1, height/64)), 1);
+    outputColor = vec4(hsv2rgb(vec3(0.3, 1,height/64)), 1);
 }

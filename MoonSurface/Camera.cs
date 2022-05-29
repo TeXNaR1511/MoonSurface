@@ -119,5 +119,16 @@ namespace MoonSurface
             _right = Vector3.Normalize(Vector3.Cross(_front, Vector3.UnitY));
             _up = Vector3.Normalize(Vector3.Cross(_right, _front));
         }
+
+        public float return_pitch()
+        {
+            return _pitch;
+        }
+
+        public float return_yaw()
+        {
+            return _yaw;
+        }
+
     }
 }
