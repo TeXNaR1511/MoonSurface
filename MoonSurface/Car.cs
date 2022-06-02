@@ -55,8 +55,8 @@ namespace MoonSurface
 
         public void load()
         {
-            GL.Enable(EnableCap.DepthTest);
-            GL.DepthFunc(DepthFunction.Less);
+            //GL.Enable(EnableCap.DepthTest);
+            //GL.DepthFunc(DepthFunction.Less);
             //GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBufferObject);
             _carshader.Use();
             GL.GenVertexArrays(1, out _vaocar);
@@ -79,7 +79,7 @@ namespace MoonSurface
             _carshader.SetMatrix4("view", Program.camera.GetViewMatrix());
             _carshader.SetMatrix4("projection", Program.camera.GetProjectionMatrix());
             _carshader.SetVector3("objectColor", new Vector3(1.0f, 0.0f, 0.0f));//цвет окошка перед камерой
-            //_shader.SetVector3("objectColor", new Vector3(0.83f, 0.06f, 0.06f));//мой код
+            //_shader.SetVector3("objectColor", new Vector3(0.83f, 0.06f, 0.06f));
 
             _carshader.SetMatrix4("model", model);
             GL.BindVertexArray(_vaocar);

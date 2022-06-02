@@ -14,9 +14,10 @@ namespace MoonSurface
     class Program : GameWindow
     {
         
-        // We need an instance of the new camera class so it can manage the view and projection matrix code
-        // We also need a boolean set to true to detect whether or not the mouse has been moved for the first time
-        // Finally we add the last position of the mouse so we can calculate the mouse offset easily
+        
+        
+
+        
         public static Camera camera;
         private int _vertexBufferObject;
         private bool _firstMove = true;
@@ -30,7 +31,7 @@ namespace MoonSurface
         private bool isForwardX = false;
         private bool isForwardY = false;
 
-        StreamWriter sw = new StreamWriter("C:\\Users\\Xiaomi\\Text.txt");
+        //StreamWriter sw = new StreamWriter("C:\\Users\\Xiaomi\\Text.txt");
 
         Terrain terrain;
         //TextFrame textFrame;
@@ -55,22 +56,29 @@ namespace MoonSurface
 
         protected override void OnLoad(EventArgs e)
         {
+            GL.Enable(EnableCap.DepthTest);
+            GL.DepthFunc(DepthFunction.Less);
             //GL.Enable(EnableCap.DepthTest);
             //GL.DepthFunc(DepthFunction.Less);
             //_vertexBufferObject = GL.GenBuffer();
             //GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBufferObject);
             GL.ClearColor(0.101f, 0.98f, 1.0f, 1.0f);
+
+
             //GL.ClearColor(0f, 0f, 1f,1f);
             //GL.Enable(EnableCap.DepthTest);
 
-            // We initialize the camera so that it is 3 units back from where the rectangle is
-            // and give it the proper aspect ratio
+            
+            
 
             terrain = new Terrain(new FileInfo("./Resources/moon_surface.png"));//сама картинка
             camera = new Camera(new Vector3(0, 100/*terrain.getHeightAtPosition(256, 256)*/, 0), Width / (float)Height);//положение камеры начальное
             //textFrame = new TextFrame();
             car = new Car();
-            // We make the mouse cursor invisible so we can have proper FPS-camera movement
+
+            car.load();
+            terrain.load();
+            
             CursorVisible = false;
 
             carPosition.X = terrain.returnInitialCoord().X;
@@ -84,8 +92,7 @@ namespace MoonSurface
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
             //textFrame.load();
-            car.load();
-            terrain.load();
+         
 
             //textFrame = new TextFrame();
 
@@ -102,7 +109,7 @@ namespace MoonSurface
             //transform2 *= Matrix4.CreateRotationZ(camera.return_pitch());
             //transform2*= Matrix4.CreateRotationZ(camera.return_yaw());
 
-            sw.Write(carPosition);
+            //sw.Write(carPosition);
             var obstacle = false;
 
             if (isForwardX && terrain.isObstacleForwardX(carPosition))
@@ -125,7 +132,7 @@ namespace MoonSurface
                 Console.WriteLine("Сзади по Y препятствие");
                 obstacle = true;
             }
-            sw.WriteLine(" "+obstacle);
+            //sw.WriteLine(" "+obstacle);
             //if(textFramePaint) textFrame.render(e, transform2);
             car.render(e, transform1);
             terrain.render(e, transform);
@@ -232,24 +239,24 @@ namespace MoonSurface
                 camera.Position -= camera.Up * cameraSpeed * (float)e.Time; // Down
             }
 
-            // Get the mouse state
+            
             var mouse = Mouse.GetState();
 
-            if (_firstMove) // this bool variable is initially set to true
+            if (_firstMove) 
             {
                 _lastPos = new Vector2(mouse.X, mouse.Y);
                 _firstMove = false;
             }
             else
             {
-                // Calculate the offset of the mouse position
+                
                 var deltaX = mouse.X - _lastPos.X;
                 var deltaY = mouse.Y - _lastPos.Y;
                 _lastPos = new Vector2(mouse.X, mouse.Y);
 
-                // Apply the camera pitch and yaw (we clamp the pitch in the camera class)
+                
                 camera.Yaw += deltaX * sensitivity;
-                camera.Pitch -= deltaY * sensitivity; // reversed since y-coordinates range from bottom to top
+                camera.Pitch -= deltaY * sensitivity; 
             }
 
             base.OnUpdateFrame(e);
@@ -257,7 +264,7 @@ namespace MoonSurface
 
         protected override void OnMouseMove(MouseMoveEventArgs e)
         {
-            if (Focused) // check to see if the window is focused
+            if (Focused) 
             {
                 Mouse.SetPosition(X + Width / 2f, Y + Height / 2f);
             }
@@ -282,7 +289,7 @@ namespace MoonSurface
             car.destroy(e);
             GL.DeleteBuffer(_vertexBufferObject);
             base.OnUnload(e);
-            sw.Close();
+            //sw.Close();
         }
     }
 }
