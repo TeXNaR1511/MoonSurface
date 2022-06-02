@@ -32,9 +32,9 @@ namespace MoonSurface
         //private int _vertexBufferObject;
         private int _carBufferObject;
 
-        private float carLenght = 2;
-        private float carWidth = 2;
-        private float carHeight = 2;
+        private float carLenght = 10;
+        private float carWidth = 10;
+        private float carHeight = 10;
 
         public Car()
         {

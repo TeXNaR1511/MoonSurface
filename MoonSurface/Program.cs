@@ -8,10 +8,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 namespace MoonSurface
 {
     class Program : GameWindow
     {
+        
         // We need an instance of the new camera class so it can manage the view and projection matrix code
         // We also need a boolean set to true to detect whether or not the mouse has been moved for the first time
         // Finally we add the last position of the mouse so we can calculate the mouse offset easily
@@ -28,6 +30,8 @@ namespace MoonSurface
         private bool isForwardX = false;
         private bool isForwardY = false;
 
+        StreamWriter sw = new StreamWriter("C:\\Users\\Xiaomi\\Text.txt");
+
         Terrain terrain;
         //TextFrame textFrame;
         Car car;
@@ -39,7 +43,6 @@ namespace MoonSurface
 
         static void Main(string[] args)
         {
-            
             using (Program program = new Program())
             {
                 program.Run();
@@ -63,7 +66,7 @@ namespace MoonSurface
             // We initialize the camera so that it is 3 units back from where the rectangle is
             // and give it the proper aspect ratio
 
-            terrain = new Terrain(new FileInfo("./Resources/alert_test1.png"));//сама картинка
+            terrain = new Terrain(new FileInfo("./Resources/moon_surface.png"));//сама картинка
             camera = new Camera(new Vector3(0, 100/*terrain.getHeightAtPosition(256, 256)*/, 0), Width / (float)Height);//положение камеры начальное
             //textFrame = new TextFrame();
             car = new Car();
@@ -99,11 +102,30 @@ namespace MoonSurface
             //transform2 *= Matrix4.CreateRotationZ(camera.return_pitch());
             //transform2*= Matrix4.CreateRotationZ(camera.return_yaw());
 
-            if (isForwardX && terrain.isObstacleForwardX(carPosition)) Console.WriteLine("Впереди по X препятствие");
-            if (isForwardY && terrain.isObstacleForwardY(carPosition)) Console.WriteLine("Впереди по Y препятствие");
-            if (!isForwardX && terrain.isObstacleBackX(carPosition)) Console.WriteLine("Сзади по X препятствие");
-            if (!isForwardY && terrain.isObstacleBackY(carPosition)) Console.WriteLine("Сзади по Y препятствие");
+            sw.Write(carPosition);
+            var obstacle = false;
 
+            if (isForwardX && terrain.isObstacleForwardX(carPosition))
+            { 
+                Console.WriteLine("Впереди по X препятствие");
+                obstacle = true;
+            }
+            if (isForwardY && terrain.isObstacleForwardY(carPosition))
+            {
+                Console.WriteLine("Впереди по Y препятствие");
+                obstacle = true;
+            }
+            if (!isForwardX && terrain.isObstacleBackX(carPosition))
+            {
+                Console.WriteLine("Сзади по X препятствие");
+                obstacle = true;
+            }
+            if (!isForwardY && terrain.isObstacleBackY(carPosition))
+            {
+                Console.WriteLine("Сзади по Y препятствие");
+                obstacle = true;
+            }
+            sw.WriteLine(" "+obstacle);
             //if(textFramePaint) textFrame.render(e, transform2);
             car.render(e, transform1);
             terrain.render(e, transform);
@@ -140,7 +162,6 @@ namespace MoonSurface
             //    //textFrame.render(e, Matrix4.Identity);
             //    //SwapBuffers();
             //}
-
             //if (input.IsKeyDown(Key.G))
             //{
             //    framePaint=false;
@@ -157,7 +178,7 @@ namespace MoonSurface
             const float cameraSpeed = 50f;
             const float sensitivity = 0.2f;
 
-            const float carSpeed = 20f;
+            const float carSpeed = 30f;
 
             if(input.IsKeyDown(Key.Up) && carPosition.X<maxX)
             {
@@ -261,6 +282,7 @@ namespace MoonSurface
             car.destroy(e);
             GL.DeleteBuffer(_vertexBufferObject);
             base.OnUnload(e);
+            sw.Close();
         }
     }
 }
