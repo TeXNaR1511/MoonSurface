@@ -22,7 +22,7 @@ namespace MoonSurface
         private float _pitch;
 
         
-        private float _yaw = -MathHelper.PiOver2; 
+        private float _yaw = MathHelper.PiOver2; 
 
         
         private float _fov = MathHelper.PiOver2;
@@ -93,7 +93,7 @@ namespace MoonSurface
         
         public Matrix4 GetProjectionMatrix()
         {
-            return Matrix4.CreatePerspectiveFieldOfView(_fov, AspectRatio, 0.01f, 10000f);/*последний параметр дальность зрения*/
+            return Matrix4.CreatePerspectiveFieldOfView(_fov, AspectRatio, 0.1f, 100000f);/*последний параметр дальность зрения*/
         }
 
         

@@ -35,7 +35,7 @@ namespace MoonSurface
             //_vertexBufferObject = _vBO;
             heightmap = new Bitmap(heightmapFile.FullName);
             _vertices = new float[heightmap.Width * heightmap.Height * 3 * 3 * 2];
-            scale = 7;
+            scale = 10;
             int a = 0;
             for (int i = 0; i < heightmap.Width - 1; i++)
             {
@@ -44,7 +44,7 @@ namespace MoonSurface
                     Color c = heightmap.GetPixel(i, j);
                     //Console.WriteLine(c);
                     _vertices[a++] = i * scale;
-                    _vertices[a++] = (c.R + c.G + c.B) / 9;
+                    _vertices[a++] = (c.R + c.G + c.B) / 3;
                     _vertices[a++] = j * scale;
                     //_vertices[a++] = c.R / 4;
                     //_vertices[a++] = (c.R + c.G + c.B) / 12;
@@ -52,7 +52,7 @@ namespace MoonSurface
 
                     c = heightmap.GetPixel(i + 1, j);
                     _vertices[a++] = (i + 1) * scale;
-                    _vertices[a++] = (c.R + c.G + c.B) / 9;
+                    _vertices[a++] = (c.R + c.G + c.B) / 3;
                     _vertices[a++] = j * scale;
                     //_vertices[a++] = c.R / 4;
                     //_vertices[a++] = (c.R + c.G + c.B) / 12;
@@ -60,7 +60,7 @@ namespace MoonSurface
 
                     c = heightmap.GetPixel(i, j + 1);
                     _vertices[a++] = i * scale;
-                    _vertices[a++] = (c.R + c.G + c.B) / 9;
+                    _vertices[a++] = (c.R + c.G + c.B) / 3;
                     _vertices[a++] = (j + 1) * scale;
                     //_vertices[a++] = c.R / 4;
                     //_vertices[a++] = (c.R + c.G + c.B) / 12;
@@ -68,7 +68,7 @@ namespace MoonSurface
 
                     c = heightmap.GetPixel(i + 1, j + 1);
                     _vertices[a++] = (i + 1) * scale;
-                    _vertices[a++] = (c.R + c.G + c.B) / 9;
+                    _vertices[a++] = (c.R + c.G + c.B) / 3;
                     _vertices[a++] = (j + 1) * scale;
                     //_vertices[a++] = c.R / 4;
                     //_vertices[a++] = (c.R + c.G + c.B) / 12;
@@ -76,7 +76,7 @@ namespace MoonSurface
 
                     c = heightmap.GetPixel(i + 1, j);
                     _vertices[a++] = (i + 1) * scale;
-                    _vertices[a++] = (c.R + c.G + c.B) / 9;
+                    _vertices[a++] = (c.R + c.G + c.B) / 3;
                     _vertices[a++] = j * scale;
                     //_vertices[a++] = c.R / 4;
                     //_vertices[a++] = (c.R + c.G + c.B) / 12;
@@ -84,7 +84,7 @@ namespace MoonSurface
                     
                     c = heightmap.GetPixel(i, j + 1);
                     _vertices[a++] = i * scale;
-                    _vertices[a++] = (c.R + c.G + c.B) / 9;
+                    _vertices[a++] = (c.R + c.G + c.B) / 3;
                     _vertices[a++] = (j + 1) * scale;
                     //_vertices[a++] = c.R / 4;
                     //_vertices[a++] = (c.R + c.G + c.B) / 12;
@@ -100,7 +100,7 @@ namespace MoonSurface
             }*/
            // _vertexBufferObject = GL.GenBuffer();
 
-            _shader = new Shader("./Shaders/Shader.vert", "./Shaders/Shader.frag");
+            _shader = new Shader("./Shaders/shader3.vert", "./Shaders/shader3.frag");
         }
 
         //public float getHeightAtPosition(int x, int y)
@@ -122,7 +122,7 @@ namespace MoonSurface
         public float getHeightAtPosition(float i,float j)
         {
             Color c = heightmap.GetPixel((int)i, (int)j);
-            return (c.R + c.G + c.B) / 9;
+            return (c.R + c.G + c.B) / 3;
         }
 
         public void load()

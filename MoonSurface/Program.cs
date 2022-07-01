@@ -14,10 +14,6 @@ namespace MoonSurface
     class Program : GameWindow
     {
         
-        
-        
-
-        
         public static Camera camera;
         private int _vertexBufferObject;
         private bool _firstMove = true;
@@ -69,10 +65,8 @@ namespace MoonSurface
             //GL.Enable(EnableCap.DepthTest);
 
             
-            
-
-            terrain = new Terrain(new FileInfo("./Resources/moon_surface.png"));//сама картинка
-            camera = new Camera(new Vector3(0, 100/*terrain.getHeightAtPosition(256, 256)*/, 0), Width / (float)Height);//положение камеры начальное
+            terrain = new Terrain(new FileInfo("./Resources/mshrpsc2.png"));//сама картинка
+            camera = new Camera(new Vector3(0, 300/*terrain.getHeightAtPosition(256, 256)*/, 0), Width / (float)Height);//положение камеры начальное
             //textFrame = new TextFrame();
             car = new Car();
 
@@ -182,10 +176,10 @@ namespace MoonSurface
             //Console.WriteLine(maxX);
             //Console.WriteLine(maxY);
 
-            const float cameraSpeed = 50f;
+            const float cameraSpeed = 1000f;
             const float sensitivity = 0.2f;
 
-            const float carSpeed = 30f;
+            const float carSpeed = 300f;
 
             if(input.IsKeyDown(Key.Up) && carPosition.X<maxX)
             {
