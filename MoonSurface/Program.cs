@@ -104,27 +104,31 @@ namespace MoonSurface
             //transform2*= Matrix4.CreateRotationZ(camera.return_yaw());
 
             //sw.Write(carPosition);
-            var obstacle = false;
+            //var obstacle = false;
 
-            if (isForwardX && terrain.isObstacleForwardX(carPosition))
-            { 
-                Console.WriteLine("Впереди по X препятствие");
-                obstacle = true;
-            }
-            if (isForwardY && terrain.isObstacleForwardY(carPosition))
+            if (isForwardX && terrain.isObstacleForwardX(carPosition)[0])
             {
-                Console.WriteLine("Впереди по Y препятствие");
-                obstacle = true;
+                if (terrain.isObstacleForwardX(carPosition)[1])
+                    Console.WriteLine("Впереди по X крутой  спуск");
+                else Console.WriteLine("Впереди по X крутой подъём");
             }
-            if (!isForwardX && terrain.isObstacleBackX(carPosition))
+            if (isForwardY && terrain.isObstacleForwardY(carPosition)[0])
             {
-                Console.WriteLine("Сзади по X препятствие");
-                obstacle = true;
+                if (terrain.isObstacleForwardX(carPosition)[1])
+                    Console.WriteLine("Впереди по Y крутой  спуск");
+                else Console.WriteLine("Впереди по Y крутой подъём");
             }
-            if (!isForwardY && terrain.isObstacleBackY(carPosition))
+            if (!isForwardX && terrain.isObstacleBackX(carPosition)[0])
             {
-                Console.WriteLine("Сзади по Y препятствие");
-                obstacle = true;
+                if (terrain.isObstacleForwardX(carPosition)[1])
+                    Console.WriteLine("Сзади   по X крутой  спуск");
+                else Console.WriteLine("Сзади   по X крутой подъём");
+            }
+            if (!isForwardY && terrain.isObstacleBackY(carPosition)[0])
+            {
+                if (terrain.isObstacleForwardX(carPosition)[1])
+                    Console.WriteLine("Сзади   по Y крутой  спуск");
+                else Console.WriteLine("Сзади   по Y крутой подъём");
             }
             //sw.WriteLine(" "+obstacle);
             //if(textFramePaint) textFrame.render(e, transform2);

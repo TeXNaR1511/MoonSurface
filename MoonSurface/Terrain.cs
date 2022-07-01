@@ -208,7 +208,7 @@ namespace MoonSurface
             return (float)MathHelper.RadiansToDegrees(Math.Acos(Vector3.Dot(a, b) / (a.Length * b.Length)));
         }
 
-        public bool isObstacleForwardX(Vector3 C)
+        public List<bool> isObstacleForwardX(Vector3 C)
         {
             Vector3 V = new Vector3();
             Vector3 W = new Vector3();
@@ -233,16 +233,16 @@ namespace MoonSurface
                 W.Y = returnY_XX1Y1X2Y2(new Vector2(b, getHeightAtPosition(a / scale + 2, b / scale)), new Vector2(b + scale, getHeightAtPosition(a / scale + 1, b / scale + 1)), W.Z);  //returnHeightOnTriangle(new Vector2(W.X, W.Z));
             }
 
-            if (W.Y <= V.Y) return false;
+            //if (W.Y <= V.Y) return false; //условие означает что ровер спускается
 
             Vector3 M = V - C;
             Vector3 N = W - V;
             M.Y = 0;
 
-            return angleBTVectors(M, N) > limitAngle;
+            return new List<bool> { angleBTVectors(M, N) > limitAngle, W.Y <= V.Y };
         }
 
-        public bool isObstacleForwardY(Vector3 C)
+        public List<bool> isObstacleForwardY(Vector3 C)
         {
             Vector3 V = new Vector3();
             Vector3 W = new Vector3();
@@ -267,16 +267,16 @@ namespace MoonSurface
                 W.Y = returnY_XX1Y1X2Y2(new Vector2(b + scale, getHeightAtPosition(a / scale + 1, b / scale + 1)), new Vector2(b + 2 * scale, getHeightAtPosition(a / scale, b / scale + 2)), W.Z);  //returnHeightOnTriangle(new Vector2(W.X, W.Z));
             }
 
-            if (W.Y <= V.Y) return false;
+            //if (W.Y <= V.Y) return false;
 
             Vector3 M = V - C;
             Vector3 N = W - V;
             M.Y = 0;
 
-            return angleBTVectors(M, N) > limitAngle;
+            return new List<bool> { angleBTVectors(M, N) > limitAngle, W.Y <= V.Y };
         }
 
-        public bool isObstacleBackX(Vector3 C)
+        public List<bool> isObstacleBackX(Vector3 C)
         {
             Vector3 V = new Vector3();
             Vector3 W = new Vector3();
@@ -301,16 +301,16 @@ namespace MoonSurface
                 W.Y = returnY_XX1Y1X2Y2(new Vector2(b, getHeightAtPosition(a / scale, b / scale)), new Vector2(b + scale, getHeightAtPosition(a / scale, b / scale + 1)), W.Z);
             }
 
-            if (W.Y <= V.Y) return false;
+            //if (W.Y <= V.Y) return false;
 
             Vector3 M = V - C;
             Vector3 N = W - V;
             M.Y = 0;
 
-            return angleBTVectors(M, N) > limitAngle;
+            return new List<bool> { angleBTVectors(M, N) > limitAngle, W.Y <= V.Y };
         }
 
-        public bool isObstacleBackY(Vector3 C)
+        public List<bool> isObstacleBackY(Vector3 C)
         {
             Vector3 V = new Vector3();
             Vector3 W = new Vector3();
@@ -335,13 +335,13 @@ namespace MoonSurface
                 W.Y = returnY_XX1Y1X2Y2(new Vector2(a + scale, getHeightAtPosition(a / scale + 1, b / scale)), new Vector2(a, getHeightAtPosition(a / scale, b / scale)), W.X);  //returnHeightOnTriangle(new Vector2(W.X, W.Z));
             }
 
-            if (W.Y <= V.Y) return false;
+            //if (W.Y <= V.Y) return false;
 
             Vector3 M = V - C;
             Vector3 N = W - V;
             M.Y = 0;
 
-            return angleBTVectors(M, N) > limitAngle;
+            return new List<bool> { angleBTVectors(M, N) > limitAngle, W.Y <= V.Y };
         }
 
     }
